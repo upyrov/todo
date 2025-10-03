@@ -15,6 +15,7 @@ import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 import { createTask, fetchCategories, TaskCreate } from "@/lib/api";
 import ErrorAlert from "./ErrorAlert";
+import { Plus } from "lucide-react";
 
 export default function AddTaskDialog() {
   const queryClient = useQueryClient();
@@ -59,7 +60,10 @@ export default function AddTaskDialog() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>Add task</Button>
+        <Button>
+          <Plus size={16} />
+          Add task
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

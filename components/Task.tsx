@@ -7,7 +7,7 @@ import { Checkbox } from "./ui/checkbox";
 import { Card, CardContent } from "./ui/card";
 import { deleteTask, type Task, updateTask } from "@/lib/api";
 import ErrorAlert from "@/components/ErrorAlert";
-import { Trash } from "lucide-react";
+import { Calendar, ListOrdered, Tag, Trash } from "lucide-react";
 import { Button } from "./ui/button";
 
 export default function Task({ task, filters }: { task: Task; filters: any }) {
@@ -113,21 +113,30 @@ export default function Task({ task, filters }: { task: Task; filters: any }) {
             {task.description && (
               <p className="text-sm text-gray-600">{task.description}</p>
             )}
-            <div className="flex gap-2 text-xs text-gray-500 mt-1">
-              {task.category && <span>🏷 {task.category}</span>}
-              {task.due_date && (
-                <span>{new Date(task.due_date).toLocaleDateString()}</span>
+            <div className="flex gap-4 text-xs text-gray-500 mt-1">
+              {task.category && (
+                <span className="flex gap-2 align-middle">
+                  <Tag size={16} />
+                  {task.category}
+                </span>
               )}
-              <span>Priority: {task.priority}</span>
+              {task.due_date && (
+                <span className="flex gap-2 align-middle">
+                  <Calendar size={16} />
+                  {new Date(task.due_date).toLocaleDateString()}
+                </span>
+              )}
+              <span className="flex gap-2 align-middle">
+                <ListOrdered size={16} /> Priority: {task.priority}
+              </span>
             </div>
           </div>
           <Button
             onClick={handleDelete}
             onPointerDown={(e) => e.stopPropagation()} // prevents drag hijack
-            className="text-red-500 hover:text-red-700 ml-2 flex gap-2 self-center"
+            className="flex self-center"
           >
             <Trash size={16} className="self-center" />
-            Delete
           </Button>
         </CardContent>
       </Card>
