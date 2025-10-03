@@ -91,6 +91,7 @@ export default function AddTaskDialog() {
             <Input
               type="number"
               min={1}
+              max={10}
               value={form.priority}
               onChange={(e) =>
                 setForm({ ...form, priority: parseInt(e.target.value) || 1 })
